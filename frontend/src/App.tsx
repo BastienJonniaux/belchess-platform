@@ -1,11 +1,16 @@
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar';
+import ClubPage from './pages/ClubPage';
 import './App.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-function App() {
 
+function App() {
   return (
-        <Navbar/>
-  ) 
+    <>
+      <Routes>
+        <Route path="/clubs/:matricule" element={<ClubPage />} />
+      </Routes>
+    </>
+  )
 }
 
 export default App
