@@ -33,3 +33,11 @@ def read_players(club_matricule: int, db: Session = Depends(get_db)):
     if not players:
         raise HTTPException(status_code=404, detail="Aucun joueur trouvé pour ce club.")
     return players
+
+@app.get("/api/clubs", response_model=List[schemas.ClubResponse])
+def read_clubs(db: Session = Depends(get_db)):
+    """Récupère tous les clubs."""
+    clubs = crud.get_clubs(db)
+    if not clubs:
+        raise HTTPException(status_code=404, detail="Aucun club trouvé.")
+    return clubs

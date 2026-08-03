@@ -6,3 +6,6 @@ def get_club(db: Session, club_matricule: int): #retourne le club correspondant 
 
 def get_players_by_club(db: Session, club_matricule: int): #retourne les joueurs du club correspondant au matricule donné, triés par rang (rang = classement dans leur club)
     return db.query(models.Player).filter(models.Player.club_matricule == club_matricule).order_by(models.Player.rank).all()
+
+def get_clubs(db: Session): #retourne tous les clubs
+    return db.query(models.Club).all()

@@ -11,6 +11,7 @@ export interface ClubInfo {
   avgAge: number;
   belgianCount: number;
   foreignCount: number;
+  titleCount: number;
 }
 
 interface ClubHeaderProps {
@@ -36,10 +37,11 @@ export default function ClubHeader({ club }: ClubHeaderProps) {
       </div>
 
       {/* Stats row */}
-      <div className="grid grid-cols-4 gap-2.5">
+      <div className="grid grid-cols-5 gap-2">
         <StatCard label="Joueurs" value={club.playerCount} />
         <StatCard label="Elo moyen" value={club.avgElo} valueColor="text-[#BD8C3E]" />
         <StatCard label="Âge moyen" value={club.avgAge} />
+        <StatCard label="Titrés" value={club.titleCount} />
         <StatCard
           label="Belges / Étrangers"
           value={`${club.belgianCount} / ${club.foreignCount}`}

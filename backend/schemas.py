@@ -12,6 +12,7 @@ class PlayerResponse(BaseModel):
     nationality: Optional[str] = None
     elogained: Optional[float] = None
     totalgames: Optional[float] = None
+    lastgame: Optional[str] = None
     age: Optional[int] = None
     model_config = ConfigDict(from_attributes=True) #permet de configurer le modèle Pydantic pour qu'il puisse être créé à partir d'instances de modèles SQLAlchemy, en mappant automatiquement les attributs des objets SQLAlchemy aux champs du modèle Pydantic.
 
@@ -21,4 +22,10 @@ class ClubResponse(BaseModel):
     nom: Optional[str] = None
     ligue: Optional[str] = None
     federation: Optional[str] = None
+    player_count: Optional[int] = None
+    average_elo: Optional[float] = None
+    average_age: Optional[float] = None
+    belgian_players_count: Optional[int] = None
+    foreign_players_count: Optional[int] = None
+    title_count: Optional[int] = None
     model_config = ConfigDict(from_attributes=True)

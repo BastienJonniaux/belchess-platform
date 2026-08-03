@@ -8,6 +8,7 @@ export interface PlayerRow {
   nationality: "BE" | "FR" | string;
   games: number;
   lastGame: string; // "dd/mm"
+  totalgames: number;
 }
 
 interface PlayerTableProps {
@@ -22,6 +23,7 @@ const COLUMNS = [
   { key: "nationality", label: "Nat.", align: "right" },
   { key: "games", label: "Parties", align: "right" },
   { key: "lastGame", label: "Dernière", align: "right" },
+  { key: "totalgames", label: "Total", align: "right" },
 ] as const;
 
 export default function PlayerTable({ players }: PlayerTableProps) {
@@ -70,6 +72,9 @@ export default function PlayerTable({ players }: PlayerTableProps) {
               </td>
               <td className="px-1 py-2.5 text-right text-[11px] text-[#8A7A62]">
                 {p.lastGame}
+              </td>
+              <td className="px-1 py-2.5 text-right font-mono text-xs text-[#EDE3D3]">
+                {p.totalgames}
               </td>
             </tr>
           ))}
