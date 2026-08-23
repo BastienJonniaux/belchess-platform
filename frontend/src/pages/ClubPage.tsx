@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar";
 import ClubHeader, { type ClubInfo } from "../components/ClubHeader";
-import PlayerTable, { type PlayerRow } from "../components/PlayerTable";
 import { useParams } from "react-router-dom";
+import type { Column } from "../components/SortableTable";
+import SortableTable from "../components/SortableTable";
 
 /*const PLACEHOLDER_CLUB: ClubInfo = {
   matricule: 541,
   name: "Échiquier Leuzois",
-  town: "Leuze-en-Hainaut",
+  ville: "Leuze-en-Hainaut",
   ligue: "Hainaut (FEFB)",
   federation: "F.E.F.B.",
   playerCount: 76,
@@ -29,7 +30,7 @@ export default function ClubPage() {
         setClub({
           matricule: data.matricule,
           name: data.nom,
-          town: data.ville,
+          ville: data.ville,
           ligue: data.ligue,
           federation: data.federation,
           playerCount: data.player_count,
@@ -82,31 +83,35 @@ export default function ClubPage() {
       });
   }, [club]);
 
-if (!club) {
-    return (
-      <div className="min-h-screen bg-[#1C1712] font-sans text-[#EDE3D3]">
-        <Navbar />
-        <main className="mx-auto max-w-4xl">
-          <div className="mt-6 overflow-hidden rounded-xl border border-[#3A3025] bg-[#1C1712]">
-            <div className="p-6 text-center text-[#8A7A62]">Chargement du club...</div>
-          </div>
-        </main>
-      </div>
-    );
-  }
+const playerColumns : Column<PlayerRow>[] = [
+  { key: "rank", label: "Rang" },
+  { key: "matricule", label: "Matricule" },
+  { key: "lastName", label: "Nom" },
+  { key: "firstName", label: "Prénom" },
+  { key: "age", label: "Âge" },
+  { key: "elo", label: "Elo" },
+  { key: "nationality", label: "Fédération" },
+  { key: "games", label: "Parties" },
+  { key: "lastGame", label: "Dernière partie" },
+  { key: "totalgames", label: "Total parties" },
+];
 
 
   return (
     <div className="min-h-screen bg-[#1C1712] font-sans text-[#EDE3D3]">
       <Navbar />
-      <main className="mx-auto max-w-4xl">
+      <main className="mx-auto max-w-5xl">
         <div className="mt-6 overflow-hidden rounded-xl border border-[#3A3025] bg-[#1C1712]">
-          <ClubHeader club={club} />
+          {club ? (
+            <ClubHeader club={club} />
+          ) : (
+            <div className="p-6 text-center text-[#8A7A62]">Chargement du club...</div>
+          )}
           
           {loading ? (
             <div className="p-6 text-center text-[#8A7A62]">Chargement des joueurs...</div>
           ) : (
-            <PlayerTable players={players} />
+            <SortableTable data={players} columns={playerColumns} />
           )}
 
         </div>

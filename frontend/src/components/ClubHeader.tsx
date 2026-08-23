@@ -3,7 +3,7 @@ import StatCard from "./StatCard";
 export interface ClubInfo {
   matricule: number;
   name: string;
-  town: string;
+  ville: string;
   ligue: string;
   federation: string;
   playerCount: number;
@@ -31,7 +31,7 @@ export default function ClubHeader({ club }: ClubHeaderProps) {
             {club.name}
           </div>
           <div className="text-xs text-[#8A7A62]">
-            Club #{club.matricule} · {club.town} · {club.ligue}
+            Club #{club.matricule} · {club.ville} · {club.ligue}
           </div>
         </div>
       </div>
