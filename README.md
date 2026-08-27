@@ -5,10 +5,13 @@ Une plateforme Data "Full-Stack" dédiée à l’analyse et à la visualisation 
 
 
 Ce projet personnel vise à apprendre et à m’améliorer sur le domaine de la data; via un ETL, donc j’extrais les données moi-même, je les transforme avec pandas et je les transmets via mon api REST (via fastapi). Ainsi qu’en apprendre plus sur du frontend en créant le dashboard en react (que je connais déjà) et en typescript(appris lors du projet). Mais aussi en découvrant des technos que je ne connaissais que de noms comme Docker, SQLAlchemy.
+
+
 ⚠️
 Tous les retours, conseils sont les bienvenues. Mon but est surtout d’apprendre et non pas d’aller vite.
 Pas d’utilisation de LLM hormis pour débug, ainsi que parfois pour m’aider dans le design du frontend et copilot en tant qu'auto-completion.
 ⚠️
+
 
 ##  Architecture du Projet
 
