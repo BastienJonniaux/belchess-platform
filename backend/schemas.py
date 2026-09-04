@@ -29,3 +29,12 @@ class ClubResponse(BaseModel):
     foreign_players_count: Optional[int] = None
     title_count: Optional[int] = None
     model_config = ConfigDict(from_attributes=True)
+
+class GlobalStatsResponse(BaseModel):
+    total_clubs: int
+    total_players: int
+    average_elo: float
+    average_age: float
+    age_max: Optional[int] = None
+    age_min: Optional[int] = None
+    model_config = ConfigDict(from_attributes=True)

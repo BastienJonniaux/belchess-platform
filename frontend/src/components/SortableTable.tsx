@@ -12,7 +12,7 @@ interface SortableTableProps<T> {
 }
 
 export default function SortableTable<T>({ data, columns }: SortableTableProps<T>) {
-  // Les états de tri (uniquement les paramètres, pas les données !)
+  // Les états de tri ;(ascendant ou descendant) et la colonne actuellement triée
   const [sortKey, setSortKey] = useState<keyof T | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
@@ -40,13 +40,12 @@ export default function SortableTable<T>({ data, columns }: SortableTableProps<T
     });
   }, [data, sortKey, sortDirection]);
 
-  // La fonction déclenchée au clic sur une colonne
   const handleSort = (key: keyof T) => {
     if (sortKey === key) {
       setSortDirection(sortDirection === "asc" ? "desc" : "asc");
     } else {
       setSortKey(key);
-      setSortDirection("desc"); // Par défaut, on trie en descendant quand on change de colonne
+      setSortDirection("desc");
     }
   };
 

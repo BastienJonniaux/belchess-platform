@@ -41,3 +41,18 @@ def read_clubs(db: Session = Depends(get_db)):
     if not clubs:
         raise HTTPException(status_code=404, detail="Aucun club trouvé.")
     return clubs
+
+@app.get("/api/stats", response_model=schemas.GlobalStatsResponse)
+def read_global_stats(db: Session = Depends(get_db)):
+    """Récupère les statistiques globales."""
+    stats = crud.global_stats(db)
+    if not stats:
+        raise HTTPException(status_code=404, detail="Aucune statistique trouvée.")
+    return schemas.GlobalStatsResponse(
+        total_clubs=stats[0],
+        total_players=stats[1],
+        average_elo=stats[2],
+        average_age=stats[3],
+        age_max=stats[4],
+        age_min=stats[5]
+    )
