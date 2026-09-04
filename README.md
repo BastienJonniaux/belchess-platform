@@ -1,7 +1,7 @@
 # BelChess platform (Commencé début juillet et toujours en cours de développement)
 
 
-Une plateforme Data "Full-Stack" dédiée à l’analyse et à la visualisation des statistiques des clubs d’échecs belges.
+Une plateforme Data "Full-Stack" dédiée à l’analyse et à la visualisation des statistiques des clubs et des joueurs d’échecs belges.
 
 
 Ce projet personnel vise à apprendre et à m’améliorer sur le domaine de la data; via un ETL, donc j’extrais les données moi-même, je les transforme avec pandas et je les transmets via mon api REST (via fastapi). Ainsi qu’en apprendre plus sur du frontend en créant le dashboard en react (que je connais déjà) et en typescript(appris lors du projet). Mais aussi en découvrant des technos que je ne connaissais que de noms comme Docker, SQLAlchemy.
@@ -37,4 +37,13 @@ Pas d’utilisation de LLM hormis pour débug, ainsi que parfois pour m’aider 
    - **TypeScript** : toujours dans le but d’apprendre mais ca semble particulièrement pertinent dans un projet data ou on manipule beaucoup de types de données différents.
    - Algorithmes de tri et de filtrage implémentés côté client.
    - [EN COURS ] Visualisation de données avec **Recharts** et le tout est stylisé via **Tailwind CSS**.
+  
 
+## Features que j'espère faire dans le futur;
+- [ ] Graphiques/liste mettant en évidences les prodiges donc les outliers ceux qui ressortent à leur age (jeunes ou vieux) via machine learning ou simplement statistique
+- [ ] Pages listant tout les joueurs par elo, age, ... (7000 joueurs donc faudra bien gérer les perfs)
+- [ ] Liaison avec swar résults  (site affichant les tournois belges en cours/finis) pour afficher les tournois d'un club sur sa page perso
+- [ ] Liaison avec un système d'archive de la FRBE pour retrouver les fiches précédentes et pouvoir afficher la progression des clubs en termes de membres et voir pour chaque joueur par quel club ils sont passées.
+- [ ] Déployer le site et la db et l'optimiser pour éviter les requetes inutiles et avoir de bonnes perfs.
+- [ ] Essayer de créer une vraie D.A au site en trouvant des composants adaptés, animation, ... Et essayer de rendre la navigation accesible pour tous.
+- [ ] Création de visuels générés via PowerBI pour démontrer un peu le site (et pour apprendre Power BI)
