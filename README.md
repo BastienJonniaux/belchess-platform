@@ -1,4 +1,4 @@
-# BelChess platform (Commencé début juillet et toujours en cours de développement)
+# BelChess platform (Juillet 2026 -> toujours en cours de développement)
 
 
 Une plateforme Data "Full-Stack" dédiée à l’analyse et à la visualisation des statistiques des clubs et des joueurs d’échecs belges.
