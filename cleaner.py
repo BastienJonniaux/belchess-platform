@@ -1,8 +1,9 @@
+import os
 import time
 import pandas as pd
 from sqlalchemy import create_engine
 from scraper import scrape_players, scrape_club, all_matricules
-
+SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL")
 
 
 all_players_data = []
@@ -60,7 +61,7 @@ df_clubs = df_clubs.merge(df_players_grouped, left_on='matricule', right_on='clu
 print("Connexion à la base de données PostgreSQL...")
 
 
-DATABASE_URL = 'postgresql://belchess_admin:superpassword@localhost:5433/belchess_db'
+DATABASE_URL = SQLALCHEMY_DATABASE_URL
 engine = create_engine(DATABASE_URL)
 
 print("Insertion des données dans la base...")

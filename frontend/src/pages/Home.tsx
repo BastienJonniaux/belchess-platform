@@ -5,7 +5,8 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell   
 } from "recharts";
 
-// 1. On définit nos types
+//TODO; améliorer le design du graphique, ajouter des couleurs, des animations, etc.
+// Faire détection des outliers pour les joueurs "prodiges" ou "vieux briscards" et les mettre en évidence sur le graphique. (scatter plot ?, ou un autre type de graphique ?)
 interface GlobalStats {
   total_clubs: number;
   total_players: number;
