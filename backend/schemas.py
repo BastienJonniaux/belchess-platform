@@ -38,8 +38,3 @@ class GlobalStatsResponse(BaseModel):
     age_max: Optional[int] = None
     age_min: Optional[int] = None
     model_config = ConfigDict(from_attributes=True)
-
-class ClubAnalysis(BaseModel):
-    overview: str 
-    strengths: List[str]
-    areas_for_growth: List[str]

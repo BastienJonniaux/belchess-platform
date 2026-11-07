@@ -4,7 +4,6 @@ import ClubHeader, { type ClubInfo } from "../components/ClubHeader";
 import { useParams, Link } from "react-router-dom";
 import type { Column } from "../components/SortableTable";
 import SortableTable from "../components/SortableTable";
-import ClubAiReport from "../components/ClubAiReport";
 import {
   RankBadge,
   TitleBadge,
@@ -193,10 +192,7 @@ export default function ClubPage() {
 
         <div className="overflow-hidden rounded-xl border border-[#2E241B] bg-[#18130F] shadow-xl">
           {club ? (
-            <>
-              <ClubHeader club={club} />
-              <ClubAiReport clubMatricule={club.matricule} />
-            </>
+            <ClubHeader club={club} />
           ) : (
             <div className="p-8 text-center text-xs text-[#8A7A62] font-mono">
               <div className="mx-auto mb-3 h-5 w-5 animate-spin rounded-full border-2 border-[#C59448] border-t-transparent"></div>

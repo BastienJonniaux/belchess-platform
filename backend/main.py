@@ -69,14 +69,3 @@ def read_global_stats(db: Session = Depends(get_db)):
         age_max=stats[4],
         age_min=stats[5]
     )
-
-@app.get("/api/clubs/{club_matricule}/analysis", response_model=schemas.ClubAnalysis)
-def read_club_analysis(club_matricule: int, db: Session = Depends(get_db)):
-    """Récupère l'analyse d'un club générée par IA."""
-    db_club = crud.get_club(db, club_matricule=club_matricule)
-    if not db_club:
-        raise HTTPException(status_code=404, detail="Club non trouvé.")
-    analysis = crud.get_club_analysis(db, club_matricule=club_matricule)
-    if not analysis:
-        raise HTTPException(status_code=503, detail="L'analyse par IA est temporairement indisponible.")
-    return analysis
