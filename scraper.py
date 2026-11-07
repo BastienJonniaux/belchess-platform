@@ -1,18 +1,29 @@
-#import de bs4 
 import re
-
 from bs4 import BeautifulSoup
 import requests
 
-url_index = "https://www.frbe-kbsb.be/sites/manager/GestionFICHES/FRBE_Club.php"
-response = requests.get(url_index)
-soup = BeautifulSoup(response.content, 'html.parser')
+def get_all_matricules():
+    url_index = "https://www.frbe-kbsb.be/sites/manager/GestionFICHES/FRBE_Club.php"
+    try:
+        response = requests.get(url_index, timeout=15)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+        matricules = []
+        for link in soup.find_all('a', href=re.compile(r'club=\d+')):
+            matricule = link['href'].split('club=')[1]
+            matricules.append(int(matricule))
+        return matricules
+    except Exception as e:
+        print(f"Erreur lors de la récupération des matricules: {e}")
+        return []
 
-    
+# Rétrocompatibilité si importé directement
 all_matricules = []
-for link in soup.find_all('a', href=re.compile(r'club=\d+')):
-    matricule = link['href'].split('club=')[1]
-    all_matricules.append(int(matricule))
+def get_matricules_cached():
+    global all_matricules
+    if not all_matricules:
+        all_matricules = get_all_matricules()
+    return all_matricules
 
 
 def scrape_club(matricule):

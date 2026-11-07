@@ -1,3 +1,10 @@
+import os
+import sys
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
+
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
 from database import Base
 
@@ -32,4 +39,4 @@ class Player(Base):
     totalgames = Column(Float)
     birth_year = Column(Integer)
     age = Column(Integer)
-    lastgame = Column()
+    lastgame = Column(String)

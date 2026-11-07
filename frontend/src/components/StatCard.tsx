@@ -3,7 +3,7 @@ interface StatCardProps {
   value: string | number;
   hint?: string;
   hintColor?: "positive" | "negative" | "neutral";
-  valueColor?: string; // e.g. "text-[#BD8C3E]" to highlight (Elo, etc.)
+  valueColor?: string;
 }
 
 const HINT_COLORS = {
@@ -17,16 +17,20 @@ export default function StatCard({
   value,
   hint,
   hintColor = "neutral",
-  valueColor = "text-[#EDE3D3]",
+  valueColor = "text-[#F4EFEA]",
 }: StatCardProps) {
   return (
-    <div className="rounded-[10px] border border-[#3A3025] bg-[#241D16] p-3.5">
-      <div className="text-xs text-[#B3A48C]">{label}</div>
-      <div className={`mt-1.5 font-mono text-xl font-medium ${valueColor}`}>
+    <div className="rounded-lg border border-[#2E241B] bg-[#1A140F] p-3.5 shadow-sm transition-all hover:border-[#3E3125]">
+      <div className="text-[11px] font-mono uppercase tracking-wider text-[#8A7A62]">
+        {label}
+      </div>
+      <div className={`mt-1 font-mono text-xl font-semibold tracking-tight ${valueColor}`}>
         {value}
       </div>
       {hint && (
-        <div className={`mt-1 text-[11px] ${HINT_COLORS[hintColor]}`}>{hint}</div>
+        <div className={`mt-1 text-[11px] font-sans ${HINT_COLORS[hintColor]}`}>
+          {hint}
+        </div>
       )}
     </div>
   );

@@ -1,5 +1,5 @@
-from pydantic import BaseModel, ConfigDict
-from typing import Optional
+from pydantic import BaseModel, ConfigDict, Field
+from typing import List, Optional
 #schemas.py sert à definir la facon dont les données sont validées et sérialisées dans les modèles Pydantic
 class PlayerResponse(BaseModel):
     player_matricule: int
@@ -38,3 +38,8 @@ class GlobalStatsResponse(BaseModel):
     age_max: Optional[int] = None
     age_min: Optional[int] = None
     model_config = ConfigDict(from_attributes=True)
+
+class ClubAnalysis(BaseModel):
+    overview: str 
+    strengths: List[str]
+    areas_for_growth: List[str]

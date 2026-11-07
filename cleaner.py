@@ -1,16 +1,22 @@
 import os
 import time
+import datetime
 import pandas as pd
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
-from scraper import scrape_players, scrape_club, all_matricules
-SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL")
+from scraper import scrape_players, scrape_club, get_all_matricules
 
+load_dotenv()
+
+SQLALCHEMY_DATABASE_URL = os.getenv(
+    "SQLALCHEMY_DATABASE_URL",
+    "postgresql://belchess_admin:superpassword@localhost:5433/belchess_db"
+)
 
 all_players_data = []
 all_clubs_data = []
 
-# test
-#all_matricules = all_matricules[:3] 
+all_matricules = get_all_matricules()
 print(f"Début du scraping pour {len(all_matricules)} clubs...")
 for matricule in all_matricules:
     club_info = scrape_club(matricule)
@@ -33,10 +39,14 @@ df_players['fide'] = pd.to_numeric(df_players['fide'], errors='coerce')
 df_players['elogained'] = pd.to_numeric(df_players['elogained'], errors='coerce').fillna(0)
 df_players['totalgames'] = pd.to_numeric(df_players['totalgames'], errors='coerce').fillna(0)
 
-df_players[['last_name', 'first_name']] = df_players['player_name'].str.split(', ', n=1, expand=True)
+# Découpage sécurisé du nom et prénom
+names_split = df_players['player_name'].str.split(', ', n=1, expand=True)
+df_players['last_name'] = names_split[0]
+df_players['first_name'] = names_split[1] if names_split.shape[1] > 1 else ""
 
+current_year = datetime.date.today().year
 df_players['birth_year'] = pd.to_numeric(df_players['dtn'].str[:4], errors='coerce')
-df_players['age'] = 2026 - df_players['birth_year']
+df_players['age'] = current_year - df_players['birth_year']
 df_players['titre'] = df_players['titre'].replace({'': None})
 
 df_players['elo_reference'] = df_players['fide'].combine_first(df_players['elobelge']).fillna(0)
